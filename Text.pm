@@ -311,7 +311,7 @@ L<Error::Pure::Utils>,
 
 =head1 REPOSITORY
 
-L<https://github.com/tupinek/Error-Pure>
+L<https://github.com/tupinek/Error-Pure-Output-Text>
 
 =head1 AUTHOR
 
