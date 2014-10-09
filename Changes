@@ -1,4 +1,4 @@
-0.18
+0.18 2014-10-09T13:10:29+02:00
  - Add EXAMPLE4 to doc.
  - Add err_bt_pretty_rev() subroutine.
  - Fix REPOSITORY section in doc.
