@@ -1,4 +1,4 @@
-0.19
+0.19 2014-10-09T13:50:32+02:00
  - Remove newline from error values. Add tests for it.
 
 0.18 2014-10-09T13:10:29+02:00
