@@ -196,10 +196,6 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =back
 
-=head1 ERRORS
-
- None.
-
 =head1 EXAMPLE1
 
  # Pragmas.

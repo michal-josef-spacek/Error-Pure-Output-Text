@@ -52,9 +52,6 @@ SUBROUTINES
              Format of error is: "#Error [%s:%s] %s\n"
              Values of error are: $program, $line, $message
 
-ERRORS
-     None.
-
 EXAMPLE1
      # Pragmas.
      use strict;
