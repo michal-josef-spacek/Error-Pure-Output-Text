@@ -70,6 +70,7 @@ sub _bt_pretty_one {
 		}
 		my $ret = $f;
 		if (defined $t) {
+			chomp $t;
 			$ret .= ': '.$t;
 		}
 		push @ret, $ret;

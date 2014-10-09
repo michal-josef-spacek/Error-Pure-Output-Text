@@ -1,4 +1,5 @@
 0.19
+ - Remove newline from error values. Add tests for it.
 
 0.18 2014-10-09T13:10:29+02:00
  - Add EXAMPLE4 to doc.
