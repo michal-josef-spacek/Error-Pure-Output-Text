@@ -16,6 +16,7 @@ Makefile.PL
 MANIFEST			This list of files
 META.yml
 README
+SIGNATURE
 t/Error-Pure-Output-Text/00-use.t
 t/Error-Pure-Output-Text/01-version.t
 t/Error-Pure-Output-Text/02-pod_coverage.t
