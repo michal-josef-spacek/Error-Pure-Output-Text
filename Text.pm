@@ -53,6 +53,7 @@ sub err_bt_pretty {
 	return wantarray ? @ret : (join "\n", @ret)."\n";
 }
 
+# Pretty print with errors each on one line.
 sub err_line_all {
 	my @errors = @_;
 	my $ret;
