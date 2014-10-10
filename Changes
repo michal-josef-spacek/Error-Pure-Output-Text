@@ -1,4 +1,5 @@
 0.20
+ - Fix tests.
 
 0.19 2014-10-09T13:50:32+02:00
  - Remove newline from error values. Add tests for it.
