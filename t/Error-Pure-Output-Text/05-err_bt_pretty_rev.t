@@ -4,7 +4,7 @@ use warnings;
 
 # Modules.
 use Error::Pure::Output::Text qw(err_bt_pretty_rev);
-use Test::More 'tests' => 6;
+use Test::More 'tests' => 7;
 use Test::NoWarnings;
 
 # Test.
@@ -27,7 +27,19 @@ ERROR: Error.
 main  err  ./example.pl  12
 END
 my $ret = err_bt_pretty_rev(@errors);
-is($ret, $right_ret, 'Reverse backtrace print in simple error.');
+is($ret, $right_ret, 'Reverse backtrace print in simple error (scalar mode).');
+
+# Test.
+my @right_ret = (
+	'ERROR: Error.',
+	'main  err  ./example.pl  12',
+);
+my @ret = err_bt_pretty_rev(@errors);
+is_deeply(
+	\@ret,
+	\@right_ret,
+	'Reverse backtrace print in simple error (array mode).'
+);
 
 # Test.
 @errors = (

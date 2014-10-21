@@ -2,7 +2,6 @@ TODO
 ====
 1. Zamyslet se, jestli vypocet sirky terminalu delat skrz vsechny errory, nebo
    na kazdy zvlast. [_lenghts()]
-2. Dodelat cover testing.
 3. Vystup jako v js
 
 module.js:340
@@ -23,3 +22,5 @@ Error: Cannot find module 'streamws'
 
 Applied
 =======
+2. Dodelat cover testing.
+OK [20141022] skim

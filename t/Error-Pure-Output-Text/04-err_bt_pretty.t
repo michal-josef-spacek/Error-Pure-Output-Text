@@ -4,7 +4,7 @@ use warnings;
 
 # Modules.
 use Error::Pure::Output::Text qw(err_bt_pretty);
-use Test::More 'tests' => 6;
+use Test::More 'tests' => 8;
 use Test::NoWarnings;
 
 # Test.
@@ -27,7 +27,19 @@ ERROR: Error.
 main  err  ./example.pl  12
 END
 my $ret = err_bt_pretty(@errors);
-is($ret, $right_ret, 'Backtrace print in simple error.');
+is($ret, $right_ret, 'Backtrace print in simple error (scalar mode).');
+
+# Test.
+my @right_ret = (
+	'ERROR: Error.',
+	'main  err  ./example.pl  12',
+);
+my @ret = err_bt_pretty(@errors);
+is_deeply(
+	\@ret,
+	\@right_ret,
+	'Backtrace print in simple error (array mode).',
+);
 
 # Test.
 @errors = (
@@ -168,3 +180,25 @@ main  err  ./example.pl  12
 END
 $ret = err_bt_pretty(@errors);
 is($ret, $right_ret, 'Backtrace print in simple error with newlines.');
+
+# Test.
+@errors = (
+	{
+		'msg' => ['Error.', undef],
+		'stack' => [
+			{
+				'args' => '(\'Error.\')',
+				'class' => 'main',
+				'line' => '12',
+				'prog' => './example.pl',
+				'sub' => 'err',	
+			},
+		],
+	},
+);
+$right_ret = <<"END";
+ERROR: Error.
+main  err  ./example.pl  12
+END
+$ret = err_bt_pretty(@errors);
+is($ret, $right_ret, 'Backtrace print in simple error with undef value.');
