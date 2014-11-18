@@ -8,8 +8,8 @@ SYNOPSIS
      print err_bt_pretty_rev(@errors);
      print err_line(@errors);
      print err_line_all(@errors);
-     print err_print_var(@errors);
      print err_print(@errors);
+     print err_print_var(\@errors, $title);
 
 SUBROUTINES
     "err_bt_pretty(@errors)"
@@ -60,7 +60,7 @@ SUBROUTINES
              If error comes from class, print class name before error.
              Returns string with error.
 
-    "err_print_var()"
+    "err_print_var(\@errors[, $title])"
              Print first error with all variables.
              Returns error string in scalar mode.
              Returns lines of error in array mode.
@@ -413,7 +413,7 @@ EXAMPLE8
      };
 
      # Print out.
-     print scalar err_print_var($err_hr);
+     print scalar err_print_var([$err_hr], 'ERROR');
 
      # Output:
      # ERROR: FOO
