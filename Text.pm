@@ -169,12 +169,15 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
  use Error::Pure::Output::Text qw(err_bt_pretty err_bt_pretty_rev err_line
          err_line_all err_print err_print_var);
- print err_bt_pretty(@errors);
- print err_bt_pretty_rev(@errors);
- print err_line(@errors);
- print err_line_all(@errors);
- print err_print(@errors);
- print err_print_var(@errors);
+ my $ret = err_bt_pretty(@errors);
+ my @ret = err_bt_pretty(@errors);
+ my $ret = err_bt_pretty_rev(@errors);
+ my @ret = err_bt_pretty_rev(@errors);
+ my $ret = err_line(@errors);
+ my $ret = err_line_all(@errors);
+ my $ret = err_print(@errors);
+ my $ret = err_print_var(@errors);
+ my @ret = err_print_var(@errors);
 
 =head1 SUBROUTINES
 

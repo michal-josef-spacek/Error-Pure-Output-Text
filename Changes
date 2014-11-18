@@ -2,6 +2,7 @@
  - Add err_print() subroutine.
  - Add err_print_var() subroutine.
  - Add tests.
+ - Improve SYNOPSIS section in doc.
  - Remove tests with newline msgs. This is cleaned by err_helper().
  - Sort subroutines and methods.
 
