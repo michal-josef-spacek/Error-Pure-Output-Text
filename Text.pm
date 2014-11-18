@@ -37,6 +37,12 @@ sub err_bt_pretty_rev {
 	return wantarray ? @ret : (join "\n", @ret)."\n";
 }
 
+# Pretty print line error.
+sub err_line {
+	my @errors = @_;
+	return _err_line($errors[-1]);
+}
+
 # Pretty print with errors each on one line.
 sub err_line_all {
 	my @errors = @_;
@@ -45,12 +51,6 @@ sub err_line_all {
 		$ret .= _err_line($error_hr);
 	}
 	return $ret;
-}
-
-# Pretty print line error.
-sub err_line {
-	my @errors = @_;
-	return _err_line($errors[-1]);
 }
 
 # Pretty print one error backtrace helper.
@@ -89,6 +89,18 @@ sub _bt_pretty_one {
 	return @ret;
 }
 
+# Pretty print line error.
+sub _err_line {
+	my $error_hr = shift;
+	my $stack_ar = $error_hr->{'stack'};
+	my $msg = $error_hr->{'msg'};
+	my $prog = $stack_ar->[0]->{'prog'};
+	$prog =~ s/^\.\///gms;
+	my $e = $msg->[0];
+	chomp $e;
+	return "#Error [$prog:$stack_ar->[0]->{'line'}] $e\n";
+}
+
 # Gets length for errors.
 sub _lenghts {
 	my @errors = @_;
@@ -112,18 +124,6 @@ sub _lenghts {
 	return $l_ar;
 }
 
-# Pretty print line error.
-sub _err_line {
-	my $error_hr = shift;
-	my $stack_ar = $error_hr->{'stack'};
-	my $msg = $error_hr->{'msg'};
-	my $prog = $stack_ar->[0]->{'prog'};
-	$prog =~ s/^\.\///gms;
-	my $e = $msg->[0];
-	chomp $e;
-	return "#Error [$prog:$stack_ar->[0]->{'line'}] $e\n";
-}
-
 1;
 
 __END__
@@ -141,8 +141,8 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  use Error::Pure::Output::Text qw(err_bt_pretty err_bt_pretty_rev err_line err_line_all);
  print err_bt_pretty(@errors);
  print err_bt_pretty_rev(@errors);
- print err_line_all(@errors);
  print err_line(@errors);
+ print err_line_all(@errors);
 
 =head1 SUBROUTINES
 
@@ -181,19 +181,19 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
          ...
          sub, caller, program, line
 
-=item C<err_line_all(@errors)>
-
- Returns string with errors each on one line.
- Use all errors in @errors structure.
- Format of error line is: "#Error [%s:%s] %s\n"
- Values of error line are: $program, $line, $message
-
 =item C<err_line(@errors)>
 
  Returns string with error on one line.
  Use last error in @errors structure..
  Format of error is: "#Error [%s:%s] %s\n"
  Values of error are: $program, $line, $message
+
+=item C<err_line_all(@errors)>
+
+ Returns string with errors each on one line.
+ Use all errors in @errors structure.
+ Format of error line is: "#Error [%s:%s] %s\n"
+ Values of error line are: $program, $line, $message
 
 =back
 
