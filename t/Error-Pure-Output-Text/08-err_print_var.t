@@ -148,31 +148,6 @@ is($ret, $right_ret, 'Print in different key=value pairs.');
 # Test.
 @errors = (
 	{
-		'msg' => [
-			"This is error.\n",
-			'Error', "Error message.\n",
-		],
-		'stack' => [
-			{
-				'args' => '(\'Error.\')',
-				'class' => 'main',
-				'line' => '12',
-				'prog' => './example.pl',
-				'sub' => 'err',	
-			},
-		],
-	},
-);
-$right_ret = <<"END";
-ERROR: This is error.
-Error: Error message.
-END
-$ret = err_print_var(\@errors, 'ERROR');
-is($ret, $right_ret, 'Print in simple error with newlines.');
-
-# Test.
-@errors = (
-	{
 		'msg' => ['Error.', undef],
 		'stack' => [
 			{

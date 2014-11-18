@@ -2,6 +2,7 @@
  - Add err_print() subroutine.
  - Add err_print_var() subroutine.
  - Add tests.
+ - Remove tests with newline msgs. This is cleaned by err_helper().
  - Sort subroutines and methods.
 
 0.20 2014-10-10T09:10:59+02:00
