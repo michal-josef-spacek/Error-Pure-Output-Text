@@ -65,7 +65,7 @@ sub err_print {
 # Print error with all variables.
 sub err_print_var {
 	my @errors = @_;
-	my @msg = @{$errors[0]->{'msg'}};
+	my @msg = @{$errors[-1]->{'msg'}};
 	my $class = _err_class($errors[-1]);
 	my @ret = ($class.(shift @msg));
 	push @ret, _err_variables(@msg);
