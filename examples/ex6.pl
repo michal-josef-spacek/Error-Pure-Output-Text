@@ -34,7 +34,7 @@ my $err_hr = {
 };
 
 # Print out.
-print scalar err_print_var($err_hr);
+print scalar err_print_var([$err_hr], 'ERROR');
 
 # Output:
 # ERROR: FOO

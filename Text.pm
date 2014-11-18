@@ -56,12 +56,21 @@ sub err_line_all {
 
 # Print error with all variables.
 sub err_print_var {
-	my @errors = @_;
+	my ($errors_ar, $title) = @_;
 	my @ret;
-	my @msg = @{$errors[0]->{'msg'}};
+	my @msg = @{$errors_ar->[0]->{'msg'}};
+
+	# First error.
 	my $e = shift @msg;
 	chomp $e;
-	push @ret, 'ERROR: '.$e;
+	my $first_err = $title;
+	if (defined $first_err) {
+		$first_err .= ': ';
+	}
+	$first_err .= $e;
+	push @ret, $first_err;
+
+	# Variables.
 	while (@msg) {
 		my $f = shift @msg;
 		my $t = shift @msg;
@@ -82,7 +91,7 @@ sub err_print_var {
 # Pretty print one error backtrace helper.
 sub _bt_pretty_one {
 	my ($error_hr, $l_ar) = @_;
-	my @ret = err_print_var($error_hr);
+	my @ret = err_print_var([$error_hr], 'ERROR');
 	foreach my $i (0 .. $#{$error_hr->{'stack'}}) {
 		my $st = $error_hr->{'stack'}->[$i];
 		my $ret = $st->{'class'};
@@ -152,7 +161,7 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  print err_bt_pretty_rev(@errors);
  print err_line(@errors);
  print err_line_all(@errors);
- print err_print_var(@errors);
+ print err_print_var(\@errors, $title);
 
 =head1 SUBROUTINES
 
@@ -205,7 +214,7 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  Format of error line is: "#Error [%s:%s] %s\n"
  Values of error line are: $program, $line, $message
 
-=item C<err_print_var()>
+=item C<err_print_var(\@errors[, $title])>
 
  Print first error with all variables.
  Returns error string in scalar mode.
@@ -493,7 +502,7 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  };
 
  # Print out.
- print scalar err_print_var($err_hr);
+ print scalar err_print_var([$err_hr], 'ERROR');
 
  # Output:
  # ERROR: FOO
