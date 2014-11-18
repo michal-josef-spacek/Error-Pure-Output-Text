@@ -109,7 +109,7 @@ is($ret, $right_ret, 'Print in complicated error.');
 	},
 );
 $right_ret = <<"END";
-Error 1.
+Error 2.
 END
 $ret = err_print_var(@errors);
 is($ret, $right_ret, 'Print in more errors.');
