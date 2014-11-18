@@ -70,21 +70,37 @@ sub err_print {
 
 # Print error with all variables.
 sub err_print_var {
-	my ($errors_ar, $title) = @_;
-	my @ret;
-	my @msg = @{$errors_ar->[0]->{'msg'}};
+	my @errors = @_;
+	my @msg = @{$errors[0]->{'msg'}};
+	my @ret = shift @msg;
+	push @ret, _err_variables(@msg);
+	return wantarray ? @ret : (join "\n", @ret)."\n";
+}
 
-	# First error.
-	my $e = shift @msg;
-	chomp $e;
-	my $first_err = $title;
-	if (defined $first_err) {
-		$first_err .= ': ';
+# Pretty print one error backtrace helper.
+sub _bt_pretty_one {
+	my ($error_hr, $l_ar) = @_;
+	my @msg = @{$error_hr->{'msg'}};
+	my @ret = ('ERROR: '.(shift @msg));
+	push @ret, _err_variables(@msg);
+	foreach my $i (0 .. $#{$error_hr->{'stack'}}) {
+		my $st = $error_hr->{'stack'}->[$i];
+		my $ret = $st->{'class'};
+		$ret .=  $SPACE x ($l_ar->[0] - length $st->{'class'});
+		$ret .=  $st->{'sub'};
+		$ret .=  $SPACE x ($l_ar->[1] - length $st->{'sub'});
+		$ret .=  $st->{'prog'};
+		$ret .=  $SPACE x ($l_ar->[2] - length $st->{'prog'});
+		$ret .=  $st->{'line'};
+		push @ret, $ret;
 	}
-	$first_err .= $e;
-	push @ret, $first_err;
+	return @ret;
+}
 
-	# Variables.
+# Process variables.
+sub _err_variables {
+	my @msg = @_;
+	my @ret;
 	while (@msg) {
 		my $f = shift @msg;
 		my $t = shift @msg;
@@ -97,24 +113,6 @@ sub err_print_var {
 			chomp $t;
 			$ret .= ': '.$t;
 		}
-		push @ret, $ret;
-	}
-	return wantarray ? @ret : (join "\n", @ret)."\n";
-}
-
-# Pretty print one error backtrace helper.
-sub _bt_pretty_one {
-	my ($error_hr, $l_ar) = @_;
-	my @ret = err_print_var([$error_hr], 'ERROR');
-	foreach my $i (0 .. $#{$error_hr->{'stack'}}) {
-		my $st = $error_hr->{'stack'}->[$i];
-		my $ret = $st->{'class'};
-		$ret .=  $SPACE x ($l_ar->[0] - length $st->{'class'});
-		$ret .=  $st->{'sub'};
-		$ret .=  $SPACE x ($l_ar->[1] - length $st->{'sub'});
-		$ret .=  $st->{'prog'};
-		$ret .=  $SPACE x ($l_ar->[2] - length $st->{'prog'});
-		$ret .=  $st->{'line'};
 		push @ret, $ret;
 	}
 	return @ret;
@@ -176,7 +174,7 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  print err_line(@errors);
  print err_line_all(@errors);
  print err_print(@errors);
- print err_print_var(\@errors, $title);
+ print err_print_var(@errors);
 
 =head1 SUBROUTINES
 
@@ -235,7 +233,7 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  If error comes from class, print class name before error.
  Returns string with error.
 
-=item C<err_print_var(\@errors[, $title])>
+=item C<err_print_var(@errors)>
 
  Print first error with all variables.
  Returns error string in scalar mode.
@@ -599,7 +597,7 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  };
 
  # Print out.
- print scalar err_print_var([$err_hr], 'ERROR');
+ print scalar err_print_var($err_hr);
 
  # Output:
  # ERROR: FOO
