@@ -97,6 +97,18 @@ sub _bt_pretty_one {
 	return @ret;
 }
 
+# Pretty print line error.
+sub _err_line {
+	my $error_hr = shift;
+	my $stack_ar = $error_hr->{'stack'};
+	my $msg = $error_hr->{'msg'};
+	my $prog = $stack_ar->[0]->{'prog'};
+	$prog =~ s/^\.\///gms;
+	my $e = $msg->[0];
+	chomp $e;
+	return "#Error [$prog:$stack_ar->[0]->{'line'}] $e\n";
+}
+
 # Process variables.
 sub _err_variables {
 	my @msg = @_;
@@ -116,18 +128,6 @@ sub _err_variables {
 		push @ret, $ret;
 	}
 	return @ret;
-}
-
-# Pretty print line error.
-sub _err_line {
-	my $error_hr = shift;
-	my $stack_ar = $error_hr->{'stack'};
-	my $msg = $error_hr->{'msg'};
-	my $prog = $stack_ar->[0]->{'prog'};
-	$prog =~ s/^\.\///gms;
-	my $e = $msg->[0];
-	chomp $e;
-	return "#Error [$prog:$stack_ar->[0]->{'line'}] $e\n";
 }
 
 # Gets length for errors.
