@@ -1,4 +1,5 @@
 0.21
+ - Add err_print_var() subroutine.
  - Add tests.
  - Sort subroutines and methods.
 

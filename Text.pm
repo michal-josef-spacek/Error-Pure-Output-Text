@@ -9,7 +9,8 @@ use warnings;
 use Readonly;
 
 # Constants.
-Readonly::Array our @EXPORT_OK => qw(err_bt_pretty err_bt_pretty_rev err_line err_line_all);
+Readonly::Array our @EXPORT_OK => qw(err_bt_pretty err_bt_pretty_rev err_line
+	err_line_all err_print_var);
 Readonly::Scalar my $SPACE => q{ };
 
 # Version.
@@ -53,11 +54,11 @@ sub err_line_all {
 	return $ret;
 }
 
-# Pretty print one error backtrace helper.
-sub _bt_pretty_one {
-	my ($error_hr, $l_ar) = @_;
+# Print error with all variables.
+sub err_print_var {
+	my @errors = @_;
 	my @ret;
-	my @msg = @{$error_hr->{'msg'}};
+	my @msg = @{$errors[0]->{'msg'}};
 	my $e = shift @msg;
 	chomp $e;
 	push @ret, 'ERROR: '.$e;
@@ -75,6 +76,13 @@ sub _bt_pretty_one {
 		}
 		push @ret, $ret;
 	}
+	return wantarray ? @ret : (join "\n", @ret)."\n";
+}
+
+# Pretty print one error backtrace helper.
+sub _bt_pretty_one {
+	my ($error_hr, $l_ar) = @_;
+	my @ret = err_print_var($error_hr);
 	foreach my $i (0 .. $#{$error_hr->{'stack'}}) {
 		my $st = $error_hr->{'stack'}->[$i];
 		my $ret = $st->{'class'};
@@ -138,11 +146,13 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 SYNOPSIS
 
- use Error::Pure::Output::Text qw(err_bt_pretty err_bt_pretty_rev err_line err_line_all);
+ use Error::Pure::Output::Text qw(err_bt_pretty err_bt_pretty_rev err_line
+         err_line_all err_print_var);
  print err_bt_pretty(@errors);
  print err_bt_pretty_rev(@errors);
  print err_line(@errors);
  print err_line_all(@errors);
+ print err_print_var(@errors);
 
 =head1 SUBROUTINES
 
@@ -194,6 +204,12 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  Use all errors in @errors structure.
  Format of error line is: "#Error [%s:%s] %s\n"
  Values of error line are: $program, $line, $message
+
+=item C<err_print_var()>
+
+ Print first error with all variables.
+ Returns error string in scalar mode.
+ Returns lines of error in array mode.
 
 =back
 
@@ -440,6 +456,49 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
  # BAR
  # main  err         script.pl  1
  # main  eval {...}  script.pl  20
+
+=head1 EXAMPLE6
+
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use Error::Pure::Output::Text qw(err_print_var);
+
+ # Fictional error structure.
+ my $err_hr = {
+         'msg' => [
+                 'FOO',
+                 'KEY1',
+                 'VALUE1',
+                 'KEY2',
+                 'VALUE2',
+         ],
+         'stack' => [
+                 {
+                         'args' => '(2)',
+                         'class' => 'main',
+                         'line' => 1,
+                         'prog' => 'script.pl',
+                         'sub' => 'err',
+                 }, {
+                         'args' => '',
+                         'class' => 'main',
+                         'line' => 20,
+                         'prog' => 'script.pl',
+                         'sub' => 'eval {...}',
+                 }
+         ],
+ };
+
+ # Print out.
+ print scalar err_print_var($err_hr);
+
+ # Output:
+ # ERROR: FOO
+ # KEY1: VALUE1
+ # KEY2: VALUE2
 
 =head1 DEPENDENCIES
 
