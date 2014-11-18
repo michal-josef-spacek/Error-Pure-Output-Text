@@ -16,13 +16,13 @@ my $err_hr = {
         'stack' => [
                 {
                         'args' => '(2)',
-                        'class' => 'main',
+                        'class' => 'Class',
                         'line' => 1,
                         'prog' => 'script.pl',
                         'sub' => 'err',
                 }, {
                         'args' => '',
-                        'class' => 'main',
+                        'class' => 'mains',
                         'line' => 20,
                         'prog' => 'script.pl',
                         'sub' => 'eval {...}',
@@ -34,4 +34,4 @@ my $err_hr = {
 print err_print($err_hr)."\n";
 
 # Output:
-# FOO
+# Class: FOO

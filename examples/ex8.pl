@@ -5,13 +5,16 @@ use strict;
 use warnings;
 
 # Modules.
-use Error::Pure::Output::Text qw(err_print);
+use Error::Pure::Output::Text qw(err_print_var);
 
 # Fictional error structure.
 my $err_hr = {
         'msg' => [
                 'FOO',
-                'BAR',
+                'KEY1',
+                'VALUE1',
+                'KEY2',
+                'VALUE2',
         ],
         'stack' => [
                 {
@@ -31,7 +34,9 @@ my $err_hr = {
 };
 
 # Print out.
-print err_print($err_hr)."\n";
+print scalar err_print_var([$err_hr], 'ERROR');
 
 # Output:
-# FOO
+# ERROR: FOO
+# KEY1: VALUE1
+# KEY2: VALUE2
