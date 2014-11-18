@@ -58,13 +58,7 @@ sub err_line_all {
 # Print error.
 sub err_print {
 	my @errors = @_;
-	my $class = $errors[-1]->{'stack'}->[0]->{'class'};
-	if ($class eq 'main') {
-		$class = $EMPTY_STR;
-	}
-	if ($class) {
-		$class .= ': ';
-	}
+	my $class = _err_class($errors[-1]);
 	return $class.$errors[-1]->{'msg'}->[0];
 }
 
@@ -95,6 +89,19 @@ sub _bt_pretty_one {
 		push @ret, $ret;
 	}
 	return @ret;
+}
+
+# Print class if class isn't main.
+sub _err_class {
+	my $error_hr = shift;
+	my $class = $error_hr->{'stack'}->[0]->{'class'};
+	if ($class eq 'main') {
+		$class = $EMPTY_STR;
+	}
+	if ($class) {
+		$class .= ': ';
+	}
+	return $class;
 }
 
 # Pretty print line error.
