@@ -4,7 +4,7 @@ use warnings;
 
 # Modules.
 use Error::Pure::Output::Text qw(err_print_var);
-use Test::More 'tests' => 7;
+use Test::More 'tests' => 8;
 use Test::NoWarnings;
 
 # Test.
@@ -165,3 +165,24 @@ Error.
 END
 $ret = err_print_var(@errors);
 is($ret, $right_ret, 'Print in simple error with undef value.');
+
+# Test.
+@errors = (
+	{
+		'msg' => ['Error.'],
+		'stack' => [
+			{
+				'args' => '(\'Error.\')',
+				'class' => 'Class',
+				'line' => '12',
+				'prog' => './example.pl',
+				'sub' => 'err',	
+			},
+		],
+	},
+);
+$right_ret = <<"END";
+Class: Error.
+END
+$ret = err_print_var(@errors);
+is($ret, $right_ret, 'Print in simple error with class name');

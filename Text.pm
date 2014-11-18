@@ -66,7 +66,8 @@ sub err_print {
 sub err_print_var {
 	my @errors = @_;
 	my @msg = @{$errors[0]->{'msg'}};
-	my @ret = shift @msg;
+	my $class = _err_class($errors[-1]);
+	my @ret = ($class.(shift @msg));
 	push @ret, _err_variables(@msg);
 	return wantarray ? @ret : (join "\n", @ret)."\n";
 }
