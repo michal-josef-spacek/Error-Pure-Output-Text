@@ -1,4 +1,4 @@
-0.22
+0.22 2015-09-16T10:15:40+02:00
  - Improve LICENSE AND COPYRIGHT section in doc.
  - Improve SEE ALSO section in doc.
  - Move admin tests to xt/ directory. Thanks Karen Etheridge (#105636).
