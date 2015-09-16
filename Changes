@@ -1,5 +1,6 @@
 0.22
  - Improve LICENSE AND COPYRIGHT section in doc.
+ - Improve SEE ALSO section in doc.
  - Move admin tests to xt/ directory. Thanks Karen Etheridge (#105636).
  - Remove trailing whitespace from tests.
  - Update Module::Install to 1.16 version.
