@@ -15,7 +15,7 @@ Readonly::Scalar our $EMPTY_STR => q{};
 Readonly::Scalar our $SPACE => q{ };
 
 # Version.
-our $VERSION = 0.23;
+our $VERSION = 0.24;
 
 # Pretty print of backtrace.
 sub err_bt_pretty {
@@ -647,6 +647,6 @@ L<http://skim.cz>
 
 =head1 VERSION
 
-0.23
+0.24
 
 =cut
