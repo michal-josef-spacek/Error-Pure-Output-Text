@@ -1,10 +1,8 @@
 #!/usr/bin/env perl
 
-# Pragmas.
 use strict;
 use warnings;
 
-# Modules.
 use Error::Pure::Output::Text qw(err_line_all);
 
 # Fictional error structure.

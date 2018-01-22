@@ -69,11 +69,9 @@ SUBROUTINES
              Returns lines of error in array mode.
 
 EXAMPLE1
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_bt_pretty);
 
      # Fictional error structure.
@@ -110,11 +108,9 @@ EXAMPLE1
      # main  eval {...}  script.pl  20
 
 EXAMPLE2
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_line_all);
 
      # Fictional error structure.
@@ -161,11 +157,9 @@ EXAMPLE2
      # #Error [script.pl:2] XXX
 
 EXAMPLE3
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_line);
 
      # Fictional error structure.
@@ -198,11 +192,9 @@ EXAMPLE3
      # #Error [script.pl:1] FOO
 
 EXAMPLE4
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_bt_pretty);
 
      # Fictional error structure.
@@ -253,11 +245,9 @@ EXAMPLE4
      # main  err         script.pl  2
 
 EXAMPLE5
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_bt_pretty_rev);
 
      # Fictional error structure.
@@ -308,11 +298,9 @@ EXAMPLE5
      # main  eval {...}  script.pl  20
 
 EXAMPLE6
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_print);
 
      # Fictional error structure.
@@ -345,11 +333,9 @@ EXAMPLE6
      # FOO
 
 EXAMPLE7
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_print);
 
      # Fictional error structure.
@@ -382,11 +368,9 @@ EXAMPLE7
      # Class: FOO
 
 EXAMPLE8
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use Error::Pure::Output::Text qw(err_print_var);
 
      # Fictional error structure.

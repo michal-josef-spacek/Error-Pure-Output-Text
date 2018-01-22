@@ -1,11 +1,9 @@
 package Error::Pure::Output::Text;
 
-# Pragmas.
 use base qw(Exporter);
 use strict;
 use warnings;
 
-# Modules.
 use Readonly;
 
 # Constants.
@@ -254,11 +252,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE1
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_bt_pretty);
 
  # Fictional error structure.
@@ -296,11 +292,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE2
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_line_all);
 
  # Fictional error structure.
@@ -348,11 +342,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE3
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_line);
 
  # Fictional error structure.
@@ -386,11 +378,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE4
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_bt_pretty);
 
  # Fictional error structure.
@@ -442,11 +432,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE5
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_bt_pretty_rev);
 
  # Fictional error structure.
@@ -498,11 +486,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE6
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_print);
 
  # Fictional error structure.
@@ -536,11 +522,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE7
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_print);
 
  # Fictional error structure.
@@ -574,11 +558,9 @@ Error::Pure::Output::Text - Output subroutines for Error::Pure.
 
 =head1 EXAMPLE8
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use Error::Pure::Output::Text qw(err_print_var);
 
  # Fictional error structure.
