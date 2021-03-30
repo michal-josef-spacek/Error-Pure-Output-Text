@@ -3,7 +3,8 @@ TODO
 1. Zamyslet se, jestli vypocet sirky terminalu delat skrz vsechny errory, nebo
    na kazdy zvlast. [_lenghts()]
 Mozna by bylo dobre udelat verzi tabulkovou a verzi bez.
-4.
+4. Prepsat doc na pouziti =head2
+5.
 
 Applied
 =======
