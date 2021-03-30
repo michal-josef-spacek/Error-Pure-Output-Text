@@ -18,61 +18,73 @@ our $VERSION = 0.24;
 # Pretty print of backtrace.
 sub err_bt_pretty {
 	my @errors = @_;
+
 	my @ret;
 	my $l_ar = _lenghts(@errors);
 	foreach my $error_hr (@errors) {
 		push @ret, _bt_pretty_one($error_hr, $l_ar);
 	}
+
 	return wantarray ? @ret : (join "\n", @ret)."\n";
 }
 
 # Reverse pretty print of backtrace.
 sub err_bt_pretty_rev {
 	my @errors = @_;
+
 	my @ret;
 	my $l_ar = _lenghts(@errors);
 	foreach my $error_hr (reverse @errors) {
 		push @ret, _bt_pretty_one($error_hr, $l_ar);
 	}
+
 	return wantarray ? @ret : (join "\n", @ret)."\n";
 }
 
 # Pretty print line error.
 sub err_line {
 	my @errors = @_;
+
 	return _err_line($errors[-1]);
 }
 
 # Pretty print with errors each on one line.
 sub err_line_all {
 	my @errors = @_;
+
 	my $ret;
 	foreach my $error_hr (@errors) {
 		$ret .= _err_line($error_hr);
 	}
+
 	return $ret;
 }
 
 # Print error.
 sub err_print {
 	my @errors = @_;
+
 	my $class = _err_class($errors[-1]);
+
 	return $class.$errors[-1]->{'msg'}->[0];
 }
 
 # Print error with all variables.
 sub err_print_var {
 	my @errors = @_;
+
 	my @msg = @{$errors[-1]->{'msg'}};
 	my $class = _err_class($errors[-1]);
 	my @ret = ($class.(shift @msg));
 	push @ret, _err_variables(@msg);
+
 	return wantarray ? @ret : (join "\n", @ret)."\n";
 }
 
 # Pretty print one error backtrace helper.
 sub _bt_pretty_one {
 	my ($error_hr, $l_ar) = @_;
+
 	my @msg = @{$error_hr->{'msg'}};
 	my @ret = ('ERROR: '.(shift @msg));
 	push @ret, _err_variables(@msg);
@@ -87,12 +99,14 @@ sub _bt_pretty_one {
 		$ret .=  $st->{'line'};
 		push @ret, $ret;
 	}
+
 	return @ret;
 }
 
 # Print class if class isn't main.
 sub _err_class {
 	my $error_hr = shift;
+
 	my $class = $error_hr->{'stack'}->[0]->{'class'};
 	if ($class eq 'main') {
 		$class = $EMPTY_STR;
@@ -100,24 +114,28 @@ sub _err_class {
 	if ($class) {
 		$class .= ': ';
 	}
+
 	return $class;
 }
 
 # Pretty print line error.
 sub _err_line {
 	my $error_hr = shift;
+
 	my $stack_ar = $error_hr->{'stack'};
 	my $msg = $error_hr->{'msg'};
 	my $prog = $stack_ar->[0]->{'prog'};
 	$prog =~ s/^\.\///gms;
 	my $e = $msg->[0];
 	chomp $e;
+
 	return "#Error [$prog:$stack_ar->[0]->{'line'}] $e\n";
 }
 
 # Process variables.
 sub _err_variables {
 	my @msg = @_;
+
 	my @ret;
 	while (@msg) {
 		my $f = shift @msg;
@@ -133,12 +151,14 @@ sub _err_variables {
 		}
 		push @ret, $ret;
 	}
+
 	return @ret;
 }
 
 # Gets length for errors.
 sub _lenghts {
 	my @errors = @_;
+
 	my $l_ar = [0, 0, 0];
 	foreach my $error_hr (@errors) {
 		foreach my $st (@{$error_hr->{'stack'}}) {
@@ -156,6 +176,7 @@ sub _lenghts {
 	$l_ar->[0] += 2;
 	$l_ar->[1] += 2;
 	$l_ar->[2] += 2;
+
 	return $l_ar;
 }
 
