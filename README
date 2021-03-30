@@ -4,6 +4,7 @@ NAME
 SYNOPSIS
      use Error::Pure::Output::Text qw(err_bt_pretty err_bt_pretty_rev err_line
              err_line_all err_print err_print_var);
+
      my $ret = err_bt_pretty(@errors);
      my @ret = err_bt_pretty(@errors);
      my $ret = err_bt_pretty_rev(@errors);
