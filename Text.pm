@@ -13,7 +13,7 @@ Readonly::Scalar our $EMPTY_STR => q{};
 Readonly::Scalar our $SPACE => q{ };
 
 # Version.
-our $VERSION = 0.24;
+our $VERSION = 0.25;
 
 # Pretty print of backtrace.
 sub err_bt_pretty {
@@ -691,6 +691,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.24
+0.25
 
 =cut
