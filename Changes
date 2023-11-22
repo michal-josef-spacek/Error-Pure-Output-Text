@@ -1,4 +1,4 @@
-0.24
+0.24 2023-11-22T16:12:45+01:00
  - Add blank line after arguments and before return.
  - Change bugtracker to github issues.
  - Improve LICENSE AND COPYRIGHT section in doc.
