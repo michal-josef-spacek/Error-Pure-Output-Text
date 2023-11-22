@@ -3,7 +3,6 @@ TODO
 1. Zamyslet se, jestli vypocet sirky terminalu delat skrz vsechny errory, nebo
    na kazdy zvlast. [_lenghts()]
 Mozna by bylo dobre udelat verzi tabulkovou a verzi bez.
-4. Prepsat doc na pouziti =head2
 5.
 
 Applied
@@ -29,3 +28,6 @@ Error: Cannot find module 'streamws'
     at Module.require (module.js:364:17)
 Presunuto do samostatneho modulu.
 NONE [20141022] skim
+
+4. Prepsat doc na pouziti =head2
+OK [20231122] skim

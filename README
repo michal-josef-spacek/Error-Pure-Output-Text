@@ -16,58 +16,81 @@ SYNOPSIS
      my @ret = err_print_var(@errors);
 
 SUBROUTINES
-    "err_bt_pretty(@errors)"
-             Returns string with full backtrace in scalar context.
-             Returns array of full backtrace lines in array context.
-             Format of error is:
-                     ERROR: %s
-                     %s: %s
-                     ...
-                     %s %s %s %s
-                     ...
-             Values of error are:
-                     message
-                     message as key, $message as value
-                     ...
-                     sub, caller, program, line
+  "err_bt_pretty"
+     my $ret = err_bt_pretty(@errors);
+     my @ret = err_bt_pretty(@errors);
 
-    "err_bt_pretty_rev(@errors)"
-             Reverse version of print for err_bt_pretty().
-             Returns string with full backtrace in scalar context.
-             Returns array of full backtrace lines in array context.
-             Format of error is:
-                     ERROR: %s
-                     %s: %s
-                     ...
-                     %s %s %s %s
-                     ...
-             Values of error are:
-                     message
-                     message as key, $message as value
-                     ...
-                     sub, caller, program, line
+    Get string or array with full backtrace. Format of error is:
 
-    "err_line(@errors)"
-             Returns string with error on one line.
-             Use last error in @errors structure..
-             Format of error is: "#Error [%s:%s] %s\n"
-             Values of error are: $program, $line, $message
+     ERROR: %s
+     %s: %s
+     ...
+     %s %s %s %s
+     ...
 
-    "err_line_all(@errors)"
-             Returns string with errors each on one line.
-             Use all errors in @errors structure.
-             Format of error line is: "#Error [%s:%s] %s\n"
-             Values of error line are: $program, $line, $message
+    Values of error are:
 
-    "err_print(@errors)"
-             Print first error.
-             If error comes from class, print class name before error.
-             Returns string with error.
+     message
+     message as key, $message as value
+     ...
+     sub, caller, program, line
 
-    "err_print_var(@errors)"
-             Print first error with all variables.
-             Returns error string in scalar mode.
-             Returns lines of error in array mode.
+    Returns string with full backtrace in scalar context. Returns array of
+    full backtrace lines in array context.
+
+  "err_bt_pretty_rev"
+     my $ret = err_bt_pretty_rev(@errors);
+     my @ret = err_bt_pretty_rev(@errors);
+
+    Reverse version of print for "err_bt_pretty()". Format of error is:
+
+     ERROR: %s
+     %s: %s
+     ...
+     %s %s %s %s
+     ...
+
+    Values of error are:
+
+     message
+     message as key, $message as value
+     ...
+     sub, caller, program, line
+
+    Returns string with full backtrace in scalar context. Returns array of
+    full backtrace lines in array context.
+
+  "err_line"
+     my $ret = err_line(@errors);
+
+    Get string with error on one line. Use last error in @errors structure..
+    Format of error is: "#Error [%s:%s] %s\n" Values of error are:
+    "$program, $line, $message"
+
+    Returns string.
+
+  "err_line_all"
+     my $ret = err_line_all(@errors);
+
+    Get string with errors each on one line. Use all errors in @errors
+    structure. Format of error line is: "#Error [%s:%s] %s\n" Values of
+    error line are: "$program, $line, $message"
+
+    Returns string.
+
+  "err_print"
+     my $ret = err_print(@errors);
+
+    Print first error. If error comes from class, print class name before
+    error.
+
+    Returns string with error.
+
+  "err_print_var"
+    Print first error with all variables.
+
+    Returns error string in scalar mode. Returns lines of error in array
+    mode.
 
 EXAMPLE1
      use strict;
